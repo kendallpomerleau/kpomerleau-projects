@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Online Calculator</h1> 
+    <form>
+        First number: <input type="number" step="any" name="num1" id="num1"/>
+        Second number: <input type="number" step="any" name="num2" id="num2"/> <br> <br>
+        Operations: <br>
+        <input type="radio" name="operation" value="+"/> + <br>
+        <input type="radio" name="operation" value="-"/> - <br>
+        <input type="radio" name="operation" value="x"/> x <br>
+        <input type="radio" name="operation" value="÷"/> ÷ <br> <br>
+        <div id="holder">
+            
+        </div>
+    </form>
+    <script>
+        document.addEventListener("keyup", function(){
+            var operation=getRadioButton();
+            var num1=parseFloat(document.getElementById("num1").value);
+            var num2=parseFloat(document.getElementById("num2").value);
+
+            var result=calculate(num1, num2, operation);
+            document.getElementById("holder").textContent = "" + result;
+        }, false);
+        document.addEventListener("change", function(){
+            var operation=getRadioButton();
+            var num1=parseFloat(document.getElementById("num1").value);
+            var num2=parseFloat(document.getElementById("num2").value);
+
+            var result=calculate(num1, num2, operation);
+            document.getElementById("holder").textContent = "" + result;
+        }, false);
+
+        function getRadioButton(){
+            var operation_radio_pointers = document.getElementsByName("operation");
+            var which_operation = null;
+            for(var i=0; i<operation_radio_pointers.length; i++){
+                if(operation_radio_pointers[i].checked){
+                    which_operation = operation_radio_pointers[i].value;  
+                    break;            
+                }    
+            }
+            return(which_operation);
+        }
+
+        function calculate(firstNum, secondNum, operator){
+            output = null;
+            if (operator == "+"){
+                answer = firstNum + secondNum;
+                output = firstNum + " plus " + secondNum + " = " + answer;
+            }
+            else if (operator == "-"){
+                answer = firstNum - secondNum;
+                output = firstNum + " minus " + secondNum + " = " + answer;
+            }
+            else if (operator == "x"){
+                answer = firstNum * secondNum;
+                output = firstNum + " times " + secondNum + " = " + answer;
+            }
+            else if (operator == "÷"){
+                if (secondNum == 0){
+                    output = "Cannot divide by 0.";
+                }
+                else {
+                    answer = firstNum / secondNum;
+                    output = firstNum + " divided by " + secondNum + " = " + answer;
+                }
+            }
+            return output;
+        }
+
+    </script>
+    </form>
+</body>
+</html>

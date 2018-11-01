@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="weather.css">
+    <title>Weather Widget</title>
+</head>
+<body>
+
+    <div class="weather" id="weatherWidget">
+        <div class="weather-loc"></div>
+        <div class="weather-humidity"></div>
+        <div class="weather-temp"></div>
+        <img class="weather-tomorrow" />
+        <img class="weather-dayaftertomorrow" />
+    </div>
+
+    <!--Update Weather-->
+    <input type="submit" value="Update Weather" id="update"/>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", fetchWeather, false);
+        document.getElementById("update").addEventListener("click", fetchWeather, false);
+        function fetchWeather(){
+            fetch('https://classes.engineering.wustl.edu/cse330/content/weather_json.php', {
+                method:"GET"
+            })
+            .then(res => res.json())
+            .then(function(response) {
+                console.log('Success:', response);
+                let city = response.location.city;
+                let state = response.location.state;
+                let humidity = response.atmosphere.humidity;
+                let currentTemp = response.current.temp;
+
+                //display location
+                let htmlParent = document.getElementsByClassName("weather-loc")[0]; // Get the HTML element into which we want to write the note
+                htmlParent.innerHTML=""; //clear all prior text
+                let htmlParagraphObj = document.createElement("p");
+                let htmlCity = document.createElement("strong");
+                htmlCity.appendChild(document.createTextNode(city));
+                htmlParagraphObj.appendChild(htmlCity);
+                htmlParagraphObj.appendChild(document.createTextNode(", "));
+                htmlParagraphObj.appendChild(document.createTextNode(state));
+                htmlParent.appendChild(htmlParagraphObj);
+
+                //display humidity
+                document.getElementsByClassName("weather-humidity")[0].textContent = humidity;
+                
+                //display temperature
+                document.getElementsByClassName("weather-temp")[0].textContent = currentTemp;
+                
+                //display weather tomorrow
+                let tomorrowWeather = response.tomorrow.code;
+                let str = 'http://us.yimg.com/i/us/nws/weather/gr/##ds.png';
+                let res = str.replace('##',tomorrowWeather);
+                let image = document.getElementsByClassName("weather-tomorrow")[0];
+                image.setAttribute("src",res);
+                console.log(image);
+
+
+                //display weather day after tomorrow
+                let dayAfterWeather = response.dayafter.code;
+                let strDayAfter = 'http://us.yimg.com/i/us/nws/weather/gr/##ds.png';
+                let resDayAfter = strDayAfter.replace("##", dayAfterWeather);
+                let image2 = document.getElementsByClassName("weather-dayaftertomorrow")[0];
+                image2.src = resDayAfter;
+                console.log(image2);
+                })
+            .catch(error => console.error('Error:', error))
+        }
+
+
+        
+    /**
+    Location
+        City, in a <strong> tag
+        State, not in any tag
+    Humidity
+    Current Temperature
+    Image for Tomorrow's Forecast (see #Weather Condition Images below for more information)
+    Image for the Day After Tomorrow's Forecast
+    */
+
+
+    </script>
+
+</body>
+</html>
