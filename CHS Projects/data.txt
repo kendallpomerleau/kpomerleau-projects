@@ -1,0 +1,112 @@
+Nyle & Peta
+23
+20
+25
+34
+37
+TRUE
+Paige & Mark
+21
+24
+23
+36
+31
+TRUE
+Ginger & Val
+23
+21
+21
+36
+32
+TRUE
+Antonio & Sharna
+21
+19
+20
+35
+26
+TRUE
+Wanya & Lindsay
+23
+24
+24
+35
+30
+FALSE
+Jodie & Keo
+20
+21
+23
+27
+35
+FALSE
+Kim & Kasha
+20
+19
+22
+32
+28
+FALSE
+Von & Witney
+21
+20
+20
+32
+29
+FALSE
+Bindi & Derek
+24
+25
+23
+32
+28
+TRUE
+Nick & Sharma
+24
+21
+24
+36
+27
+TRUE
+Alek & Lindsay
+22
+23
+22
+33
+24
+TRUE
+Carlos & Witney
+23
+24
+21
+31
+25
+TRUE
+Tamal & Val
+23
+24
+25
+33
+27
+FALSE
+Alexa & Mark
+22
+24
+22
+36
+21
+FALSE
+Andy & Allison
+21
+21
+23
+29
+23
+FALSE
+Hayes & Emma
+21
+22
+23
+30
+27
+FALSE
